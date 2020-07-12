@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "9745222154",
+    "firebase_url": "https://truck-6a103.firebaseio.com",
+    "project_id": "truck-6a103",
+    "storage_bucket": "truck-6a103.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9745222154:android:94f4231c8e8198cb43adf3",
+        "android_client_info": {
+          "package_name": "com.social.truck"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "9745222154-bc6uo44o642baq6iktb3sqn6tqdh6hj0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOjQp-gFJyxEAhxKbYV1L7tL5Sxpzgq-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "9745222154-bc6uo44o642baq6iktb3sqn6tqdh6hj0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

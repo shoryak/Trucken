@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <EditText
+        android:id="@+id/organisation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/search_layout"
+        android:hint="Organisation Name"
+        android:paddingRight="25dp"
+
+        android:paddingLeft="25dp" />
+
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/organisation"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/search_layout"
+        android:hint="Personal Name"
+        android:paddingRight="25dp"
+
+        android:paddingLeft="25dp" />
+
+    <EditText
+        android:id="@+id/pannumber"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/search_layout"
+        android:hint="Pan Number (FOR CUSTOMERS ONLY)"
+        android:paddingRight="25dp"
+
+        android:paddingLeft="25dp" />
+
+    <EditText
+        android:id="@+id/gstnumber"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/pannumber"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/search_layout"
+        android:hint="GST Number"
+        android:paddingRight="25dp"
+
+        android:paddingLeft="25dp" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/gstnumber"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/search_layout"
+        android:hint="Email Id"
+
+        android:paddingLeft="25dp"
+        />
+    <EditText
+        android:id="@+id/phonenumber"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/search_layout"
+        android:hint="Mobile Number"
+        android:paddingRight="25dp"
+
+        android:paddingLeft="25dp"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/usertype"
+        android:layout_below="@+id/phonenumber"
+        android:background="@drawable/search_layout"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+
+
+        />
+
+    <Button
+        android:id="@+id/buttonregister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/usertype"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/search_layout"
+        android:text="Register" />
+</RelativeLayout>
