@@ -3,6 +3,7 @@ package com.social.truck;
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -17,6 +18,8 @@ import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,6 +27,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.inputmethod.InputBinding;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -67,25 +71,64 @@ public class MainActivity extends AppCompatActivity  {
 
 
     Spinner spinner;
-    EditText editText;int count=0;
+    EditText editText;  int count1=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         final String usertype [] = { "Driver" , "Customer"};
         spinner = (Spinner) findViewById(R.id.loginuser);
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, usertype));
 
         editText = findViewById(R.id.phone);
 
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(final CharSequence s, int start, int count, int after) {
+                          }
+
+            @Override
+            public void onTextChanged(final CharSequence s, int start, int before, int count) {
+                DatabaseReference ref;
+
+                if(s.toString().length()<10)
+                    count1=0;
+                ref = FirebaseDatabase.getInstance().getReference("Registered");
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.hasChild(s.toString())){
+                            count1 =1;
+                        }
+                        else if(s.toString().length()==10)
+                        {
+                            Toast.makeText(getApplicationContext(),"Unregistered User",Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                    }
+                });
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String code = "91";//CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
-
-                DatabaseReference ref;
                 String user = usertype[spinner.getSelectedItemPosition()];
-                ref = FirebaseDatabase.getInstance().getReference(user);
+                DatabaseReference ref;
+
+                ref = FirebaseDatabase.getInstance().getReference("Registered");
                 // Read from the database
 
                 final String number = editText.getText().toString().trim();
@@ -97,24 +140,24 @@ public class MainActivity extends AppCompatActivity  {
                 }
                 String phoneNumber = "+" + code + number;
 
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.hasChild(number)){
-                            count =1;
-                        }
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(),"Unregistered User",Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                    }
-                });
-                if(count==1){
-                    Intent intent = new Intent(MainActivity.this , Verify_Phone_Activity.class);
+//                ref.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        if(dataSnapshot.hasChild(number)){
+//                            count =1;
+//                        }
+//                        else
+//                        {
+//                            Toast.makeText(getApplicationContext(),"Unregistered User",Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError error) {
+//                    }
+//                });
+                if(count1==1){
+                    Intent intent = new Intent(MainActivity.this , Login.class);
                     intent.putExtra("phonenumber", phoneNumber);
                     startActivity(intent);
                 }

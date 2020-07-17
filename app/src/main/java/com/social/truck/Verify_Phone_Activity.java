@@ -88,13 +88,19 @@ public class Verify_Phone_Activity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            ref = FirebaseDatabase.getInstance().getReference(user).child(mnumber);
+                            String uid;
+
+                                    uid= FirebaseAuth.getInstance().getUid().toString();
+                            ref = FirebaseDatabase.getInstance().getReference(user).child(uid);
                             ref.child("OrganisationName").setValue(organisation);
                             ref.child("Name").setValue(pname);
                             ref.child("PanNumber").setValue(pnumber);
                             ref.child("GSTNumber").setValue(gst);
                             ref.child("OrganisationName").setValue(organisation);
                             ref.child("Email").setValue(emailid);
+                            ref.child("Mobile").setValue(mnumber);
+                            ref = FirebaseDatabase.getInstance().getReference("Registered");
+                            ref.child(mnumber).setValue("user");
                             Intent intent = new Intent(Verify_Phone_Activity.this, ProfileActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 

@@ -23,7 +23,9 @@
         android:layout_marginLeft="10dp"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
-android:layout_marginTop="200dp"
+        android:layout_above="@+id/loginuser"
+        android:layout_marginBottom="10dp"
+        android:inputType="number"
 
         />
 
@@ -32,9 +34,9 @@ android:layout_marginTop="200dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
-android:layout_below="@+id/loginuser"
-        android:background="@drawable/search_layout"
+        android:layout_centerVertical="true"
+        android:background="@drawable/search_layoutbutton"
+        android:textColor="#581845"
         android:text="Log In" />
     <Spinner
         android:layout_width="match_parent"
@@ -43,7 +45,8 @@ android:layout_below="@+id/loginuser"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:id="@+id/loginuser"
-        android:layout_below="@+id/phone"
+        android:layout_above="@+id/button"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/search_layout"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
@@ -60,7 +63,19 @@ android:layout_below="@+id/loginuser"
         android:id="@+id/register"
         android:textStyle="bold"
         />
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/trucken_transperant"
+    android:layout_below="@+id/phone"
+    android:paddingTop="10dp"
 
+    />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/trucken_transperanttitle"
+        />
 
 
 </RelativeLayout>
