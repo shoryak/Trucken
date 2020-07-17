@@ -19,12 +19,41 @@
 
 
     <TextView
-        android:id="@+id/searchname"
+        android:id="@+id/providervehicle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/searchimage"
+        android:paddingLeft="10dp"
+
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/providermaterialtype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/searchimage"
         android:paddingLeft="10dp"
         android:text="Recipe Name"
+        android:textSize="20dp"
+        android:layout_below="@+id/providervehicle"
+        />
+    <TextView
+        android:id="@+id/providerweight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/searchimage"
+        android:paddingLeft="10dp"
+        android:text="Recipe Name"
+        android:layout_below="@+id/providermaterialtype"
+        android:textSize="20dp" />
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/searchimage"
+        android:paddingLeft="10dp"
+        android:text="Location"
+        android:layout_below="@+id/providerweight"
         android:textSize="20dp" />
 
 </RelativeLayout>

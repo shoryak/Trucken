@@ -2,27 +2,46 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="Home"
+        android:id="@+id/Booking"
+        android:icon="@drawable/truck"
+        android:title="Booking"
         />
 
 
 
-    <item android:id="@+id/search"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="Search"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <item android:id="@+id/provide"
+        android:icon="@drawable/search"
+        android:title="Provide"
         />
 
     <item
-        android:id="@+id/favorite"
-        android:icon="@drawable/ic_favorite_black_24dp"
-        android:title="Favorites"
+        android:id="@+id/ongoing"
+        android:icon="@drawable/order"
+        android:title="Ongoing"
         />
 
     <item
-        android:id="@+id/activity"
-        android:icon="@drawable/ic_local_activity_black_24dp"
-        android:title="Activity"
+        android:id="@+id/completed"
+        android:icon="@drawable/completed"
+        android:title="Completed"
         />
 </menu>

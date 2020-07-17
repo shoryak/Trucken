@@ -2,14 +2,72 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_dark">
+    >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/moneyvehicle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Activity"
         android:textSize="30sp" />
 
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:padding="5dp"
+
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:id="@+id/moneymaterial"
+        android:layout_below="@+id/moneyvehicle"
+        />
+
+    <TextView
+        android:id="@+id/moneyweight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/moneymaterial"
+
+        android:textSize="30sp"
+        android:padding="5dp"
+
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/moneylocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/moneyweight"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/search_layout"
+        android:layout_below="@+id/moneylocation"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp"
+        android:id="@+id/bidmoney"
+        android:inputType="number"
+        android:hint="Place the Bid"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/search_layoutbutton"
+        android:layout_below="@id/bidmoney"
+        android:text="Make Bid"
+        android:textColor="#581845"
+        android:id="@+id/submit"
+        />
 
 </RelativeLayout>

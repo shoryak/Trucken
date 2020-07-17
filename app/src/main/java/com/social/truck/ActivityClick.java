@@ -2,6 +2,7 @@ package com.social.truck;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Activity extends Fragment {
+public class ActivityClick extends Fragment {
 
 
 
@@ -43,59 +44,92 @@ public class Activity extends Fragment {
     }
 
 
-    String uid ;
+    String uid ,count;
+     ArrayList<String> vehicle = new ArrayList<>();
+     ArrayList<String> materialtype = new ArrayList<>();
+     ArrayList<String> weight = new ArrayList<>();
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-      uid=  FirebaseAuth.getInstance().getUid().toString();
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference(uid).child("Requests");
-        Query query = rootRef.orderByChild("Requests");
+        uid = FirebaseAuth.getInstance().getUid().toString();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("Customer").child(uid).child("Requests").child(count);
+        Query query = rootRef.orderByChild(count);
         final ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final ArrayList<String> vehicle = new ArrayList<>();
-                final ArrayList<String> materialtype = new ArrayList<>();
-                final ArrayList<String> weight = new ArrayList<>();
-                final ArrayList<String> count = new ArrayList<>();
+
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                        String name = ds.child("Vehicle").getValue(String.class);
-                        vehicle.add(name);
-                        name =  ds.child("MaterialType").getValue(String.class);
-                        materialtype.add(name);
-                        weight.add(ds.child("Weight").getValue(String.class));
-//                        count.add(ds.child("Number").getValue(String.class));
+                   if(ds.getKey().equals("MaterialType")||ds.getKey().equals("Status")||ds.getKey().equals("Vehicle")||ds.getKey().equals("Weight"));
+                   else
+                   {
+                       String string = ds.getKey();
+                       weight.add(ds.getValue(String.class));
+                       Log.i("info",ds.getValue(String.class));
+                       DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Customer").child(string);
+                       Query q = databaseReference.orderByChild(string);
+                       final ValueEventListener valueEventListener1 = new ValueEventListener() {
+                           @Override
+                           public void onDataChange(DataSnapshot dataSnapshot1) {
+                               for(DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
+                                   if(dataSnapshot2.getKey().equals("Name")){
+                                       vehicle.add(dataSnapshot2.getValue(String.class));
+                                       Log.i("info","HELLO");
+                                   }
+
+                                   if(dataSnapshot2.getKey().equals("OrganisationName"))
+                                       materialtype.add(dataSnapshot2.getValue(String.class));
+
+                               }
+
+                           }
+
+                           @Override
+                           public void onCancelled(@NonNull DatabaseError error) {
+
+                           }
 
 
-                }
-
-                final ListView listView = (ListView) view.findViewById(R.id.providerlist);
-              Adapter arrayAdapter = new Adapter(getContext(),vehicle,materialtype,weight);
-                listView.setAdapter(arrayAdapter);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        AppCompatActivity appCompatActivity = (AppCompatActivity) getContext();
-                        Fragment favorites_fragment = new ActivityClick(vehicle.get(position),materialtype.get(position),weight.get(position),"Location",count.get(position),FirebaseAuth.getInstance().getUid().toString());
-                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frame,favorites_fragment).commit();
+                       };
+                       q.addListenerForSingleValueEvent(valueEventListener1);
 
 
+    }
 
 
                     }
-                });
 
-            }
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        {
+                            Log.i("info",vehicle.size()+" "+materialtype.size()+" "+weight.size());
+                            final ListView listView = (ListView) view.findViewById(R.id.providerlist);
+                            Adapter arrayAdapter = new Adapter(getContext(),vehicle,materialtype,weight);
+                            listView.setAdapter(arrayAdapter);
+                        }
+                    }
+                },5000);
+
+                    }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("INFO", databaseError.getMessage()); //Don't ignore errors!
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
+
         };
         query.addListenerForSingleValueEvent(valueEventListener);
-    }
 
+
+        }
+
+    public ActivityClick( String uid, String count) {
+        this.uid = uid;
+        this.count = count;
+    }
 
     class Adapter extends ArrayAdapter<String> {
 
